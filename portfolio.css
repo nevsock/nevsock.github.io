@@ -1,6 +1,6 @@
 body{
-  background-color: #e6f0ff;
   margin: 0;
+  background-color: #e6f0ff;
 }
 
 p, h1 {
@@ -10,11 +10,159 @@ p, h1 {
 #top {
   height: 50vh;
   min-height: 320px;
-  display: flex;
   background-color: #628eff;
 }
 
-#top-ele {
-  
+#ele {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  display: flex;
+  align-items: center;
 }
 
+#mid-ele > img {
+  height: 200px;
+  transform: translateY(20px)
+}
+
+#left-ele, #right-ele {
+  margin: 80px;
+  font: 900 2em 'M PLUS Rounded 1c', sans-serif;
+  color: white;
+}
+
+#mid {
+  height: 96px;
+  background-image: url(./img/zigzag.png);
+  background-size: contain;
+  background-repeat: repeat-x;
+}
+
+#main {
+  max-width: 960px;
+  margin: auto;
+}
+
+#main-panel {
+  margin: 64px 32px;
+  padding: 64px 32px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.article {
+  margin-bottom: 32px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.title p {
+  display: inline-block;
+  padding: 0.8em 1.6em;
+  border-radius: 1.6em;
+  font: 900 1em 'M PLUS Rounded 1c', sans-serif;
+  color: white;
+  background-color: #628eff;
+}
+
+#prof-name {
+  margin: auto;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+#prof-name-inbox {
+  display: inline-block;
+}
+
+#prof-name p {
+  display: inline-block;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+#name {
+  font-size: 3em;
+  font-weight: 900;
+}
+
+#sub-name {
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+#subtitle {
+  margin-top: 8px;
+  color: gray;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+#prof-sentence {
+  max-width: 640px;
+  margin: auto;
+}
+
+#prof-sentence p {
+  display: inline-block;
+}
+
+.artwork img{
+  display: block;
+  width: 100%;
+  margin: auto;
+}
+
+.title-group {
+  height: 32px;
+  margin-top: 24px;
+  border-bottom: 2px solid #628eff;
+  background-color: #e6f0ff;
+}
+
+.eles {
+  display: inline-block;
+  height: 32px;
+}
+
+.ele1 {
+  display: inline-block;
+  width: 10px;
+  height: 32px;
+  background-color: #628eff;
+  }
+
+.ele2 {
+  display: inline-block;
+  width: 4px;
+  height: 32px;
+  margin-left: 4px;
+  background-color: #628eff;
+}
+
+.work-titles {
+  display: inline-block;
+  position: absolute;
+  margin-left: 12px;
+  margin-top: 2px;
+}
+
+.work-titles p {
+  display: inline-block;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.work-title {
+  font-size: 1.2em;
+  font-weight: 900;
+}
+
+.sub-work-title {
+  color: gray;
+  font-size: 0.8em;
+  font-weight: 400;
+}
