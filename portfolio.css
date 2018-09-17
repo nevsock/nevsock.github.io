@@ -8,8 +8,7 @@ p, h1 {
 }
 
 #top {
-  height: 50vh;
-  min-height: 320px;
+  height: 480px;
   background-color: #628eff;
 }
 
@@ -28,9 +27,17 @@ p, h1 {
 }
 
 #left-ele, #right-ele {
-  margin: 80px;
+  margin: 80px 0;
   font: 900 2em 'M PLUS Rounded 1c', sans-serif;
   color: white;
+}
+
+#left-ele {
+  margin-right: 80px;
+}
+
+#right-ele {
+  margin-left: 80px;
 }
 
 #mid {
@@ -48,12 +55,13 @@ p, h1 {
 #main-panel {
   margin: 64px 32px;
   padding: 64px 32px;
+  padding-bottom: 16px;
   overflow: hidden;
   background-color: white;
 }
 
 .article {
-  margin-bottom: 32px;
+  margin-bottom: 64px;
 }
 
 .title {
@@ -111,44 +119,48 @@ p, h1 {
   display: inline-block;
 }
 
-.artwork img{
+.work-article {
+  margin-bottom: 64px;
+}
+
+.artwork {
+  display: inline-block;
+  width: 100%;
+}
+
+.artwork img {
   display: block;
   width: 100%;
   margin: auto;
 }
 
+.artwork > .sub-artwork {
+  width: 50%;
+}
+
+.l {
+  float: left;
+  left: 0;
+}
+
+.r {
+  float: right;
+  right: 0;
+}
+
+
 .title-group {
-  height: 32px;
-  margin-top: 24px;
+  margin-bottom: 16px;
+  border-left: 10px solid #628eff; 
   border-bottom: 2px solid #628eff;
   background-color: #e6f0ff;
 }
 
-.eles {
-  display: inline-block;
-  height: 32px;
-}
-
-.ele1 {
-  display: inline-block;
-  width: 10px;
-  height: 32px;
-  background-color: #628eff;
-  }
-
-.ele2 {
-  display: inline-block;
-  width: 4px;
-  height: 32px;
-  margin-left: 4px;
-  background-color: #628eff;
-}
-
 .work-titles {
-  display: inline-block;
-  position: absolute;
-  margin-left: 12px;
-  margin-top: 2px;
+  display: block;
+  padding: 2px 12px;
+  margin-left: 4px;
+  border-left: 4px solid #628eff;
 }
 
 .work-titles p {
@@ -157,6 +169,7 @@ p, h1 {
 }
 
 .work-title {
+  color: #4a5165;
   font-size: 1.2em;
   font-weight: 900;
 }
@@ -165,4 +178,36 @@ p, h1 {
   color: gray;
   font-size: 0.8em;
   font-weight: 400;
+}
+
+@media screen and (max-height: 640px){
+  #ele {
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 1136px){
+  #ele {
+    flex-direction: column;
+  }
+
+  #left-ele, #right-ele {
+    margin: 20px;
+    font: 900 1.5em 'M PLUS Rounded 1c', sans-serif;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 768px){
+  #main-panel {
+    margin: 32px 16px;
+    margin-bottom: 64px;
+    padding: 64px 16px;
+    padding-bottom: 0;
+  }
 }
