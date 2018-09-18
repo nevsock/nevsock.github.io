@@ -8,22 +8,51 @@ p, h1 {
 }
 
 #top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 480px;
   background-color: #628eff;
 }
 
 #ele {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
   display: flex;
   align-items: center;
 }
 
-#mid-ele > img {
+#mid-ele {
+  position: relative;
+}
+
+#mid-ele > #back-eye {
   height: 200px;
-  transform: translateY(20px)
+  transform: translateY(20px);
+}
+
+#front-parts {
+  position: absolute;
+  height: 184px;
+  width: 184px;
+  top: 0;
+  left: 0;
+  transform: translateY(20px);
+}
+
+#mid-eye {
+  position: absolute;
+  height: 90px;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+#mask {
+  position: absolute;
+  height: 507px;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateY(8px) translateX(-50%);
+  clip-path: circle(91px at center);
 }
 
 #left-ele, #right-ele {
@@ -192,18 +221,32 @@ p, h1 {
 }
 
 @media screen and (max-width: 1136px){
-  #ele {
-    flex-direction: column;
+  #left-ele, #right-ele {
+    font-size: 1.5em;
+    color: white;
   }
 
-  #left-ele, #right-ele {
-    margin: 20px;
-    font: 900 1.5em 'M PLUS Rounded 1c', sans-serif;
-    color: white;
+  #left-ele {
+    margin-right: 40px;
+  }
+
+  #right-ele {
+    margin-left: 40px;
   }
 }
 
 @media screen and (max-width: 768px){
+  #ele {
+    flex-direction: column;
+  }
+
+  
+  #left-ele, #right-ele {
+    margin: 20px;
+    font-size: 1.5em;
+    color: white;
+  }
+
   #main-panel {
     margin: 32px 16px;
     margin-bottom: 64px;
