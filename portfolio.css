@@ -48,11 +48,10 @@ p, h1 {
 
 #mask {
   position: absolute;
-  height: 507px;
-  top: 50%;
+  width: 184px;
+  top: 0;
   left: 50%;
-  transform: translateY(-50%) translateY(8px) translateX(-50%);
-  clip-path: circle(91px at center);
+  transform: translateY(18px) translateX(-50%);
 }
 
 #left-ele, #right-ele {
