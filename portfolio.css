@@ -8,7 +8,12 @@ p, h1 {
 }
 
 #top {
-  display: flex;
+  display : -webkit-box;     /* old Android */
+  display : -webkit-flex;    /* Safari etc. */
+  display : -ms-flexbox;     /* IE10        */
+  display : flex;
+  -webkit-align-items: center;      /* Safari etc. */
+  -ms-align-items    : center;      /* IE10        */
   align-items: center;
   justify-content: center;
   height: 480px;
@@ -16,7 +21,10 @@ p, h1 {
 }
 
 #ele {
-  display: flex;
+  display : -webkit-box;
+  display : -webkit-flex;
+  display : -ms-flexbox;
+  display : flex;
   align-items: center;
 }
 
