@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="./css/index.css"/>
+    <title>Cynack</title>
+    <script src="./js/contact.js" async="async" defer="defer"></script>
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light shadow _nav"><a class="navbar-brand" href="./"><img src="./img/cynack_logo.png"/></a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarText"><span class="span1"></span><span class="span2"></span><span class="span3"></span></button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="./">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="./recruit">Recruit</a></li>
+          <li class="nav-item"><a class="nav-link" href="./contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="contact1">
+      <div class="_container">
+        <h2 class="text-center uline"><span>company</span></h2>
+        <div class="_table">
+          <div class="tr">
+            <div class="th"><strong>商号</strong></div>
+            <div class="td">Cynack株式会社</div>
+          </div>
+          <div class="tr">
+            <div class="th"><strong>代表者</strong></div>
+            <div class="td">代表取締役 吉村啓</div>
+          </div>
+          <div class="tr">
+            <div class="th"><strong>設立</strong></div>
+            <div class="td">2016年11月1日</div>
+          </div>
+          <div class="tr">
+            <div class="th"><strong>事業内容</strong></div>
+            <div class="td">
+              3D基礎技術開発<br>
+              AR/MRのサービス開発およびコンサルティング業務<br>
+              上記に付帯したすべての関連事業
+            </div>
+          </div>
+          <div class="tr">
+            <div class="th"><strong>従業員数</strong></div>
+            <div class="td">6名</div>
+          </div>
+          <div class="tr">
+            <div class="th"><strong>所在地</strong></div>
+            <div class="td">
+              <span>〒150-0001</span><br>
+              <span>東京都渋谷区神宮前5‐36‐2</span> <span>パンプアップ第2ビル3階</span><br>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12966.037524024843!2d139.7059561!3d35.6644576!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xbf0cdb535b419bfa!2zQ3luYWNr5qCq5byP5Lya56S-!5e0!3m2!1sja!2sjp!4v1565154361138!5m2!1sja!2sjp" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="contact2">
+      <div class="contact2_body">
+        <div class="message _card mx-auto shadow">
+          <h2 class="text-center uline"><span>contact</span></h2>
+          <form class="_table" id="contactForm">
+            <div class="tr">
+              <div class="th">氏名<span class="text-danger">*</span></div>
+              <div class="td">
+                <input class="form-control" id="name" type="text" placeholder="name" required="required"/>
+              </div>
+            </div>
+            <div class="tr">
+              <div class="th">所属</div>
+              <div class="td">
+                <input class="form-control" id="belong" type="text" placeholder="company / organization"/>
+              </div>
+            </div>
+            <div class="tr">
+              <div class="th">メールアドレス<span class="text-danger">*</span></div>
+              <div class="td">
+                <input class="form-control" id="email" type="email" placeholder="e-mail address" required="required"/>
+              </div>
+            </div>
+            <div class="tr">
+              <div class="th">要件<span class="text-danger">*</span></div>
+              <div class="td">
+                <textarea class="form-control" id="details" rows="10" placeholder="discription" required="required"></textarea>
+              </div>
+            </div>
+            <div id="recaptchaV2"></div>
+            <button class="_button mx-auto d-block" type="submit" id="send"></button>
+            <p id="result"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="contact3"><a class="pageLink card mx-auto" href="./recruit"><img class="mx-auto" src="./img/recruit_icon.svg"/>
+        <p class="text-center"><strong>Recruit</strong></p></a></div>
+    <footer><img class="mx-auto d-block" src="./img/ASTER_with_back.png"/>
+      <div class="d-flex flex-row justify-content-center flex-wrap"><a href="./"><strong>top</strong></a><a href="./recruit"><strong>recruit</strong></a><a href="./contact"><strong>contact</strong></a><a href="./policy"><strong>privacy policy</strong></a><a href="./legal"><strong>legal</strong></a></div>
+      <p class="text-center">©️Cynack Inc. 2019</p>
+    </footer>
+  </body>
+</html>
