@@ -3,5 +3,7 @@ html, body {
   padding: 0;
 }
 canvas {
+  min-height: 100vh;
+  min-width: 100vw;
   display: block;
 }
