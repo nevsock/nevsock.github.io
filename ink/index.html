@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <script src="processing.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&amp;display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <script type="text/processing" data-processing-target="processing-canvas">
+Ink ink;
+boolean s = true;
+color colors[] = {color(239,83,80), color(236,64,122), color(171,71,188), color(126,87,194), color(92,107,192), color(66,165,245), color(41,182,246), color(38,198,218), color(38,166,154), color(102,187,106), color(156,204,101), color(212,225,87), color(255,238,88), color(255,202,40), color(255,167,38), color(255,112,67)};
+color current_color;
+color old_color;
+int color_index;
+
+void setup(){
+	colorMode(RGB);
+  fullScreen();
+  frameRate(60);
+	color_index = 0;
+	current_color = colors[color_index];
+	old_color = color(255, 255, 255);
+  ink = new Ink(s);
+}
+
+void draw(){
+  ink.Update();
+	ink.DrawBackground();
+  ink.Draw();
+  if((keyPressed == true) && (key == 'c')) {
+    ink = new Ink(s);
+  }
+}
+
+void mousePressed(){
+  if(s){
+    s = false;
+  } else {
+    s = true;
+  }
+}
+
+class Ink{
+  ArrayList <Float> ink_dots_line;
+  ArrayList <Float> ink_dots_moved;
+  ArrayList <Float> ink_dots_a;
+  ArrayList<Float> x;
+  ArrayList<Float> y;
+  int dot_n;
+  float handle_str;
+  float max;
+  boolean vertical;
+
+  Ink(boolean v) {
+    ink_dots_line = new ArrayList<Float>();
+    ink_dots_moved = new ArrayList<Float>();
+    ink_dots_a = new ArrayList<Float>();
+    if(v){
+      vertical = v;
+      max = width;
+    } else {
+      max = height;
+    }
+    
+    //波設定
+    dot_n = Math.ceil(random(3, 15) / 800 * max);
+    handle_str = 1.5;
+    
+    //first point
+    ink_dots_line.add(0.0);
+    ink_dots_moved.add(0.0);
+    ink_dots_a.add(random(5, 25));
+    
+    //middle point
+    for(int i = 1; i < dot_n; i++){
+      ink_dots_line.add(max / dot_n * i + random(-10.0, 10.0));
+      ink_dots_moved.add(0.0);
+      ink_dots_a.add(random(5, 25));
+    }
+    
+    //last point
+    ink_dots_line.add(max);
+    ink_dots_moved.add(0.0);
+    ink_dots_a.add(random(5, 25));
+  }
+
+	void DrawBackground() {
+		fill(old_color);
+		rect(0, 0, width, height);
+	}
+
+  void Draw() {
+    if(vertical){
+			max = height;
+      x = new ArrayList <Float> (ink_dots_line);
+      y = new ArrayList <Float> (ink_dots_moved);
+    } else {
+			max = width;
+      y = new ArrayList <Float> (ink_dots_line);
+      x = new ArrayList <Float> (ink_dots_moved);
+    }
+		
+		noStroke();
+    fill(current_color);
+    beginShape();
+    vertex(x.get(0), y.get(0));
+    //ハンドルの傾き
+    float b_rad = atan2(y.get(2) - y.get(0),x.get(2) - x.get(0));
+
+    //距離
+    float b_l = ink_dots_line.get(1) - ink_dots_line.get(0);
+
+    //第二制御点の算出
+    float fcx1 = x.get(0) + b_l / handle_str * cos(b_rad);
+    float fcy1 = y.get(0) + b_l / handle_str * sin(b_rad);
+    float fcx2 = x.get(1) - b_l / handle_str * cos(b_rad);
+    float fcy2 = y.get(1) - b_l / handle_str * sin(b_rad);
+
+    //first pass
+    bezierVertex(fcx1, fcy1, fcx2, fcy2, x.get(1), y.get(1));
+    
+    //middle pass
+    for(int i = 1; i < x.size() - 2; i++){
+      //firstハンドルの傾き
+      float f_rad = atan2(y.get(i + 1) - y.get(i - 1), x.get(i + 1) - x.get(i - 1));
+
+      //secondハンドルの傾き
+      float s_rad = atan2(y.get(i + 2) - y.get(i), x.get(i + 2) - x.get(i));
+
+      //距離
+      float m_l = ink_dots_line.get(i + 1) - ink_dots_line.get(i);
+
+      //cx1
+      float cx1 = x.get(i) + m_l / handle_str * cos(f_rad);
+      float cy1 = y.get(i) + m_l / handle_str * sin(f_rad);
+
+      //cx2
+      float cx2 = x.get(i + 1) - m_l / handle_str * cos(s_rad);
+      float cy2 = y.get(i + 1) - m_l / handle_str * sin(s_rad);
+
+      bezierVertex(cx1, cy1, cx2, cy2, x.get(i + 1), y.get(i + 1));
+    }
+    
+    //ハンドルの傾き
+    float l_rad = atan2(y.get(dot_n) - y.get(dot_n - 2), x.get(dot_n) - x.get(dot_n - 2));
+    
+    //距離
+    float l_l = ink_dots_line.get(dot_n) - ink_dots_line.get(dot_n - 1);
+    
+    //lcx
+    float lcx1 = x.get(dot_n - 1) + l_l / handle_str * cos(l_rad);
+    float lcy1 = y.get(dot_n - 1) + l_l / handle_str * sin(l_rad);
+    float lcx2 = x.get(dot_n) - l_l / handle_str * cos(l_rad);
+    float lcy2 = y.get(dot_n) - l_l / handle_str * sin(l_rad);
+    
+    //last pass
+    bezierVertex(lcx1, lcy1, lcx2, lcy2, x.get(dot_n), y.get(dot_n));
+
+    //stopped anchor
+    if(vertical){
+      vertex(width, 0.0);
+      vertex(0.0, 0.0);
+      vertex(x.get(0), y.get(0));
+    } else {
+      vertex(0.0, height);
+      vertex(0.0, 0.0);
+      vertex(x.get(0), y.get(0));
+    }
+    endShape();
+  }
+
+
+  void Update(){
+    ArrayList<Boolean> dot_max = new ArrayList<Boolean>();
+    for(int i = 0; i < dot_n + 1; i++) dot_max.add(false);
+    for(int i = 0; i < dot_n + 1; i++){
+      if(ink_dots_moved.get(i) <= max * 1.3){
+        ink_dots_moved.set(i, ink_dots_moved.get(i) + ink_dots_a.get(i));
+      } else {
+        dot_max.set(i, true);
+      }
+    }
+   if(!dot_max.contains(false)){
+		 	ink = new Ink(s);
+		 	old_color = current_color;
+			if(color_index < colors.length - 1) {
+				color_index++;
+			}	else {
+				color_index = 0;
+			}
+		 	current_color = colors[color_index];
+  	}
+  }
+}
+    </script>
+    <canvas id="processing-canvas"></canvas>
+  </body>
+</html>
