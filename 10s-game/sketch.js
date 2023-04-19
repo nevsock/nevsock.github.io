@@ -1,0 +1,98 @@
+float time, elapsedTime, timeStamp, pressedTime;
+int state, point, highScore;
+bool flag;
+PFont f;
+
+void setup() {
+	state = 0;
+	size(800, 800);
+  noStroke();
+	f = createFont("Century Gothic Bold");
+  textFont(f);
+	textAlign(CENTER, CENTER);
+	point = 0;
+	highScore = 0;
+	flag = false;
+}
+
+void draw(){
+	elapsedTime = float(millis()) / 1000;
+	time = elapsedTime - timeStamp;
+	background(255);
+	fill(0);
+	switch(state) {
+		case 0:
+			textSize(400);
+			fill(0,0,0,20);
+			text("10", width/2, height/2);
+			fill(0);
+			textSize(80);
+			text("click many times", width/2, height/2);
+			if(mousePressed) {
+				state = 1;
+				timeStamp = elapsedTime;
+			}
+			break;
+		case 1:
+			textSize(500);
+			text(Math.ceil(3 - time), width/2, height/2);
+			if(time >= 3.0) {
+				state = 2;
+				timeStamp = elapsedTime;
+			}
+			break;
+		case 2:
+			fill(0);
+			ellipse(mouseX, mouseY, 50+point*8, 50+point*8);
+			fill(0, 0, 0, 50);
+			textSize(150);
+			text(Math.ceil(10 - time), width/2, height/2);
+			if(time >= 10.0) {
+				state = 3;
+				timeStamp = elapsedTime;
+			}
+			break;
+		case 3:
+			if(highScore<point) {
+				highScore = point;
+				flag = true;
+			}
+			if(flag) {
+				fill(255, 192, 15);
+				text("new record !!", width/2+30, height/2+20);
+			}
+			fill(0);
+			textSize(80);
+			text("You clicked " + point + " !", width/2, height/2-100);
+			textSize(20);
+			text("High score :  " + highScore, width/2, height/2);
+			fill(0, 0, 0, 30);
+			//text("Hold to play again", width/2, height/2+105);
+			if(mousePressed && pressedTime<100) {
+				pressedTime++;
+			} else if(pressedTime>=1) {
+				pressedTime--;
+			}
+			fill(0);
+			rect(width/2-200, height/2+90, pressedTime*4, 5);
+			fill(0, 0, 0, 30);
+			rect(width/2-200, height/2+90, 400, 5);
+			if(pressedTime>=100) {
+				state = 1;
+				point = 0;
+				pressedTime = 0;
+				flag = false;
+				timeStamp = elapsedTime;
+			}
+			break;
+	}
+}
+
+void mousePressed() {
+	if(mousePressed && state == 2) {
+		point++;
+	}
+}
+		
+
+
